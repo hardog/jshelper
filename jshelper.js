@@ -132,6 +132,46 @@
             return flag;
     };
     
+    //make the object who it's object prop is the same to array
+    var objToArray = function(el){
+    	var arr = [], prop;
+    	
+    	for(prop in el){
+    		if(el.hasOwnProperty(prop)){
+    			if(null !== el[prop]){
+    				arr.push(el[prop]);
+    			}    			
+    		}    		
+    	}
+    	
+    	return arr;
+    };
+    
+    //through delay time to call fn
+    var throttle = function (fn, delay) {
+        var timer = null;
+        return function () {
+            var context = this, args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn.apply(context, args);
+            }, delay);
+        };
+    };
+    
+    //delete all the class of the given el 
+    var deleteAllClass = function(el){
+    	var classList = el.classList,
+    		i = 0,
+    		len = classList.length,
+    		cls;
+
+    	//forEach is not supported by firefox
+    	for(i = 0; i < len; i ++){
+    		classList.remove(classList[i]);
+    	}
+    };
+    
     return window.jshelper = {
     	empty : empty,
     	compatCssProp : pfx,
@@ -143,6 +183,9 @@
     	bySelectorAll : $$,
     	triggerCustomEvent : triggerEvent,
     	computeWindowScale : computeWindowScale,
-    	isInDiv : isInDiv
+    	isInDiv : isInDiv,
+    	objToArray : objToArray,
+    	throttle : throttle,
+    	deleteAllClass : deleteAllClass
     };
 })(document, window);
