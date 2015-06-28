@@ -9,12 +9,12 @@
 
 (function(document, window){
 	// it's just an empty function ... and a useless comment.
-    var empty = function () { return false; };
+    var emptyFn = function () { return false; };
     
     // `pfx` is a function that takes a standard CSS property name as a parameter
     // and returns it's prefixed version valid for current browser it runs in.
     // The code is heavily inspired by Modernizr http://www.modernizr.com/
-    var pfx = (function () {
+    var compatPrefix = (function () {
         
         var style = document.createElement('dummy').style,
             prefixes = 'Webkit Moz O ms Khtml'.split(' '),
@@ -50,7 +50,7 @@
     // `css` function applies the styles given in `props` object to the element
     // given as `el`. It runs all property names through `pfx` function to make
     // sure proper prefixed version of the property is used.
-    var css = function ( el, props ) {
+    var compatCss = function ( el, props ) {
         var key, pkey;
         for ( key in props ) {
             if ( props.hasOwnProperty(key) ) {
@@ -116,7 +116,7 @@
     };
     
     //judge is the mouse pointer is in specify div element or a object which has left,top,right,bottom props
-    var mouseInDiv = function(el, event){
+    var mouseInBox = function(el, event){
         var flag = false,
         	x=event.clientX,  
         	y=event.clientY,  
@@ -160,7 +160,7 @@
     };
     
     //delete all the class of the given el 
-    var deleteAllClass = function(el){
+    var removeAllClass = function(el){
     	var classList = el.classList,
     		len = classList.length;
 
@@ -171,9 +171,9 @@
     };
     
     return window.jshelper = {
-    	empty : empty,
-    	compatCssProp : pfx,
-    	compatCss : css,
+    	emptyFn : emptyFn,
+    	compatCssProp : compatPrefix,
+    	compatCss : compatCss,
     	arrayify : arrayify,
     	toNumber : toNumber,
     	byId : byId,
@@ -181,9 +181,9 @@
     	bySelectorAll : $$,
     	triggerCustomEvent : triggerCustomEvent,
     	computeWindowScale : computeWindowScale,
-        mouseInDiv : mouseInDiv,
+        mouseInBox : mouseInBox,
     	objToArray : objToArray,
     	throttle : throttle,
-    	deleteAllClass : deleteAllClass
+        removeAllClass : removeAllClass
     };
 })(document, window);
