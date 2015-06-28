@@ -1,6 +1,6 @@
 /**
  * the basic helper function is collected from Bartek Szopka impressjs
- * wait to be updated
+ * need to be updated
  * 
  *  author:  Frand
  *  version: 0.0.1
@@ -91,7 +91,7 @@
     
     // `triggerEvent` builds a custom DOM event with given `eventName` and `detail` data
     // and triggers it on element given as `el`.
-    var triggerEvent = function (el, eventName, detail) {
+    var triggerCustomEvent = function (el, eventName, detail) {
         var event = document.createEvent("CustomEvent");
         event.initCustomEvent(eventName, true, true, detail);
         el.dispatchEvent(event);
@@ -116,7 +116,7 @@
     };
     
     //judge is the mouse pointer is in specify div element or a object which has left,top,right,bottom props
-    var isInDiv = function(el, event){
+    var mouseInDiv = function(el, event){
         var flag = false,
         	x=event.clientX,  
         	y=event.clientY,  
@@ -162,12 +162,10 @@
     //delete all the class of the given el 
     var deleteAllClass = function(el){
     	var classList = el.classList,
-    		i = 0,
-    		len = classList.length,
-    		cls;
+    		len = classList.length;
 
     	//forEach is not supported by firefox
-    	for(i = 0; i < len; i ++){
+    	for(var i = 0; i < len; i ++){
     		classList.remove(classList[i]);
     	}
     };
@@ -181,9 +179,9 @@
     	byId : byId,
     	bySelector : $,
     	bySelectorAll : $$,
-    	triggerCustomEvent : triggerEvent,
+    	triggerCustomEvent : triggerCustomEvent,
     	computeWindowScale : computeWindowScale,
-    	isInDiv : isInDiv,
+        mouseInDiv : mouseInDiv,
     	objToArray : objToArray,
     	throttle : throttle,
     	deleteAllClass : deleteAllClass
