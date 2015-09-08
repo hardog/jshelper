@@ -17,4 +17,3 @@ just collect some useful js helper function to reduce repeat work and make work 
 - removeAllElClass: 删除指定元素上的所有类
 - getElByClass: 根据类获取DOM元素对象
 - browserType: 浏览器类型判断
-- 
