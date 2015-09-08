@@ -136,7 +136,7 @@
     };
 
     //make the object who it's object prop is the same to array
-    exports.objToArray = function(el){
+    exports.toArray = function(el){
         var arr = [], prop;
 
         for(prop in el){
